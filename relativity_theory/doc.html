@@ -1,0 +1,873 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
+<link rel="stylesheet" type="text/css" href="../style2.css">
+<title>Special Relativity Theory</title>
+<script type="text/javascript" src="../page.js"></script>
+<style type="text/css">
+div.box {
+    overflow: hidden;
+}
+
+div.frame {
+    position: relative;
+    box-sizing: content-box;
+    width: 100%;
+    padding: 100% 0px 0px 0px; /* padding-top is relative to parent width, so this assures fixed width/height ratio */
+    height: 0px;
+}
+
+svg {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    stroke-width: 1px;
+    stroke-linecap: butt;
+    stroke-linejoin: bevel;
+    stroke-miterlimit: 4;
+    fill: none;
+}
+
+.diagram_background {
+    fill: #FFFFFF;
+    stroke: none;
+}
+
+.lab_style {
+    stroke: #000000;
+    fill: #000000;
+    color: #AAAAAA; /* applied to .grid via currentColor */
+}
+
+.moving_style1 {
+    stroke: #44AAFF;
+    fill: #44AAFF;
+    color: #AADDFF; /* applied to .grid via currentColor */
+}
+
+.moving_style2 {
+    stroke: #44DD44;
+    fill: #44DD44;
+    color: #55FF55; /* applied to .grid via currentColor */
+}
+
+.grid {
+    stroke: currentColor;
+}
+
+.axis, .grid, .unitsquare {
+    fill: none;
+}
+
+.observer {
+    fill: #EEEEEE;
+}
+
+.clock {
+    fill-opacity: 0.4;
+}
+
+.observer_line {
+    stroke-dasharray: 2px;
+    stroke-dashoffset: 0px;
+}
+
+marker, symbol {
+    overflow: visible;
+    stroke-dasharray: none;
+}
+
+.grid {
+    stroke-dasharray: 1px;
+    stroke-dashoffset: 0.5px;
+}
+
+text {
+    font-size: 10px;
+    font-family: sans-serif;
+    text-align: left;
+    text-anchor: start;
+    stroke: none !important;
+}
+
+text.right {
+    text-anchor: end;
+}
+
+text.center {
+    text-anchor: middle;
+}
+
+tspan.sub {
+    font-size: 8px;
+}
+
+#rod {
+    fill: url(#rod_gradient);
+    overflow: visible;
+}
+
+.rod_gradient_start {
+    stop-color: #99FF99;
+}
+
+.rod_gradient_stop {
+    stop-color: #004400;
+}
+
+.tracks01 {
+    stroke: #FF0000;
+    stroke-width: 2px;
+    stroke-dasharray: 8px;
+}
+</style>
+<script type="text/javascript">
+function init()
+{
+    genericPageSetup.make_table_of_contents();
+}
+
+window.addEventListener('load', init, false);
+</script>
+</head>
+
+<body>
+
+<div class="hcontainer">
+
+<h1>Special Relativity Theory</h1>
+
+<div class="box imgbox">
+
+<h2 class="toc">Contents</h2>
+
+<hr>
+
+<h2>Introduction</h2>
+
+<p>This document describes some of the ideas and consequences of Einstein's Theory of
+Special Relativity (or Special Theory of Relativity), which claims that the speed of light in
+a vacuum and all laws of physics (but not time and distance) are the same in all
+inertial frames of reference in the absence of gravity.</p>
+
+<p>Special Relativity is a special case of General Relativity, where the latter adds gravity
+as a curvature of space and time (so frames in free fall are still considered inertial).</p>
+
+<hr>
+
+<h2>General Notes</h2>
+
+<p>In this document, distance and time are measured in seconds
+(you might also say that distance is measured in light-seconds, because it is
+obtained by dividing by the speed of light c).
+Velocity is always relative to the velocity c, so it is unitless.</p>
+
+<p>Unless otherwise stated, all statements about what observers
+"see", ignore the time it takes the light to travel from the observed event to
+the observer.</p>
+
+<hr>
+
+<h2>Lorentz Transformation</h2>
+
+<p>Let's assume we have two frames with the same orientation.
+Each has a single spatial dimension. We'll refer to one frame as the "lab
+frame" and the other as the "moving frame". The moving frame is moving with a
+constant velocity v relative to the lab frame, and v is considered positive
+when the movement is in the direction of plus infinity on the spatial axis of
+the lab frame. The time is zero in both frames, when their spatial zero
+locations coincide.</p>
+
+<p>The Lorentz transformation gives the space-time coordinates
+(x,t) of an event in the lab frame as a function of the coordinates (x<sub>1</sub>,t<sub>1</sub>)
+of the same event in the moving frame:</p>
+
+<img src="image001.svg" alt="">
+
+<p>where the Lorentz factor</p>
+
+<img src="image002.svg" alt="">
+
+<p>is 1 for v = 0, and tends towards infinity as v tends towards
+&plusmn;1.</p>
+
+<p>The inverse transformation is obtained by simply negating v:</p>
+
+<img src="image003.svg" alt="">
+
+<p>Note that observers in both frames agree that the
+coordinates (x,t) in the lab frame and (x<sub>1</sub>,t<sub>1</sub>) in the
+moving frame represent the same event.</p>
+
+<h3>Time Dilation Derived from the Lorentz Transformation</h3>
+
+<p>Due to the so-called time dilation, a clock at rest in the
+moving frame will appear to be slow to an observer at rest in the lab frame.
+This is seen by setting x<sub>1</sub> = 0 in the Lorentz transformation (to represent
+the fixed clock location in the moving frame) and solving for t:</p>
+
+<img src="image004.svg" alt="">
+
+<p>So, for the observer in the lab frame, 1s on the moving
+clock corresponds to &gamma; seconds of his time. Hence, the clock appears to
+be slow.</p>
+
+<p>A clock at rest in the lab frame will also appear to be slow
+to an observer at rest in the moving frame. This can be seen by setting x = 0
+and solving for t<sub>1</sub>:</p>
+
+<img src="image005.svg" alt="">
+
+<p>So, both observers see the other's clock as being slow.</p>
+
+<h3>Lorentz Contraction Derived from the Lorentz Transformation</h3>
+
+<p>The so-called Lorentz contraction is the spatial equivalent
+of the time dilation described above. A rod (of length &Delta;x<sub>1</sub>) at
+rest in the moving frame will appear to be shorter to an observer at rest in
+the lab frame. This is seen by setting t = 0 in the Lorentz transformation (representing
+the instant in lab time at which the locations of the two end points of the rod
+are simultaneously determined) and solving for &Delta;x:</p>
+
+<img src="image006.svg" alt="">
+
+<p>The opposite is true as well: a rod at rest in the lab frame
+will appear to be shorter to an observer at rest in the moving frame.</p>
+
+<p>Note that the concept of length only makes sense if the end
+point locations are determined <i>simultaneously</i>, and two spatially
+separate events, which are simultaneous in one frame, are not simultaneous in
+the other. So, the Lorentz contraction is actually a direct consequence of the
+time dilation.</p>
+
+<h3>Lorentz Transformation in 2-Dimensional Space</h3>
+
+<p>If we add a second spatial dimension y, and still assume
+that the velocity v of the moving frame is in the direction of plus infinity on
+the x axis, then the Lorentz transformation becomes:</p>
+
+<img src="image007.svg" alt="">
+
+<p>This is clearly true, because obviously there will be no
+effect on the spatial dimension perpendicular to the direction of movement. We'll
+call this 3-by-3 matrix L*.</p>
+
+<p>Now let's consider the more general case where v is not
+necessarily parallel to the x axis. We can handle this case by simply
+transforming the spatial coordinates to a rotated frame of reference, where v <i>is</i>
+parallel to the first spatial axis. Then we can perform the Lorentz transformation
+above, and finally rotate the coordinates back again.</p>
+
+<p>The following transformation will convert coordinates in the
+rotated frame to coordinates in the actual frame:</p>
+
+<img src="image008.svg" alt="">
+
+<p>We'll call this 3-by-3 matrix (including the 1/v factor) R.
+Note that the columns of R are simply the base vectors of the rotated frame
+expressed in actual coordinates; the first base vector is the v vector
+normalized to a length of 1, the second base vector is the same, but rotated 90
+degrees, and the third base vector representing the time axis is the same as
+the original time vector.</p>
+
+<p>The inverse matrix R<sup>-1</sup> will rotate the other way,
+i.e. convert coordinates in the actual frame to coordinates in the rotated
+frame. It is not difficult to see that a rotation in the opposite direction is
+equivalent to negating v<sub>y</sub> in the matrix R (negating the angle of
+rotation from the x axis means negating the y coordinate), so we have:</p>
+
+<img src="image009.svg" alt="">
+
+<p>where the 3-by-3 matrix (including the 1/v factor) is R<sup>-1</sup>.</p>
+
+<p>We now have the three matrices we need:</p>
+
+<img src="image010.svg" alt="">
+
+<p>The total transformation matrix L is the matrix product of
+these:</p>
+
+<img src="image013.svg" alt="">
+
+<p>So, the Lorentz transformation for arbitrary v&ne;0 in a
+2-dimensional space is:</p>
+
+<img src="image014.svg" alt="">
+
+<p>Note that this won't work for v=0, because our rotation
+matrix R becomes undefined when v has no direction. However, we already know
+the solution to this special case: it is simply the identity transformation
+(x,y,t) = (x<sub>1</sub>,y<sub>1</sub>,t<sub>1</sub>).</p>
+
+<hr>
+
+<h2>Space-Time Diagrams</h2>
+
+<p>A space-time diagram shows the lab time t vs. the lab
+location x. In this diagram we can also draw the t<sub>1</sub> and x<sub>1</sub>
+axes of a frame moving with velocity v relative to the lab frame. The lines
+representing the t<sub>1</sub> and x<sub>1</sub> axes can be found by setting x<sub>1</sub>
+= 0 and t<sub>1</sub> = 0, respectively, in the Lorentz transformation. Thus,
+we find that the lines x = vt and t = vx represent the t<sub>1</sub> and x<sub>1</sub>
+axes, respectively (see example in Figure 1).</p>
+
+<p>In a similar way, we can find the lines representing t<sub>1
+</sub>= ..., -2s, -1s, 1s, 2s, ..., and x<sub>1</sub> = ..., -2s, -1s, 1s, 2s,
+... It turns out that all the t<sub>1</sub> = n lines are parallel, and all the
+x<sub>1</sub> = n lines are parallel. Here's a summary of the characteristics
+of these lines:</p>
+
+<p>t<sub>1</sub> = n lines (where n is an integer number of
+seconds):</p>
+
+<ul>
+<li>have slope v (in lab frame)<br>
+<li>intersect t axis at t = n/&gamma;<br>
+<li>intersect t<sub>1</sub> axis at t = n&gamma; and x = n&gamma;v
+</ul>
+
+<p>x<sub>1</sub> = n lines (where n is an integer number of
+seconds):</p>
+
+<ul>
+<li>have slope 1/v (in lab frame)<br>
+<li>intersect x axis at x = n/&gamma;<br>
+<li>intersect x<sub>1</sub> axis at x = n&gamma; and t = n&gamma;v
+</ul>
+
+<div class="frame">
+<svg viewBox="-90 -105 195 195">
+    <defs>
+        <linearGradient id="rod_gradient" x1="0" y1="0" x2="0" y2="1">
+            <stop class="rod_gradient_start" offset="0%" />
+            <stop class="rod_gradient_stop" offset="100%" />
+        </linearGradient>
+        <symbol id="rod" viewBox="0 0 1 1" preserveAspectRatio="none">
+            <rect x="0" y="-0.5" width="1" height="1" />
+        </symbol>
+        <circle id="clock" class="clock" cx="0" cy="0" r="5" />
+        <clipPath id="clip">
+            <rect x="-90" y="-90" width="180" height="180" />
+        </clipPath>
+        <g id="observer">
+            <path class="observer" d="m -6,0 8,-6 a 8,8 0 0 1 0,12 z m 10,7.5 -10,-7.5 m 10,-7.5 -10,7.5" />
+            <ellipse cx="3" cy="0" rx="1" ry="3" />
+        </g>
+        <marker id="lab_observer" refx="0" refy="0" orient="auto" class="lab_style">
+            <use xlink:href="#observer" />
+        </marker>
+        <marker id="moving_observer1" refx="0" refy="0" orient="auto" class="moving_style1">
+            <use xlink:href="#observer" />
+        </marker>
+        <marker id="moving_observer2" refx="0" refy="0" orient="auto" class="moving_style2">
+            <use xlink:href="#observer" />
+        </marker>
+        <g id="lab_frame">
+            <g id="lab_frame_horz_grid">
+                <g id="lab_frame_horz_grid_top">
+                    <path id="lab_frame_horz_grid_one" class="grid" d="m -210,-40 460,0" />
+                    <use xlink:href="#lab_frame_horz_grid_one" x="0" y="-40" />
+                    <use xlink:href="#lab_frame_horz_grid_one" x="0" y="-80" />
+                    <use xlink:href="#lab_frame_horz_grid_one" x="0" y="-120" />
+                    <use xlink:href="#lab_frame_horz_grid_one" x="0" y="-160" />
+                    <use xlink:href="#lab_frame_horz_grid_one" x="0" y="-200" />
+                </g>
+                <use xlink:href="#lab_frame_horz_grid_top" transform="scale(1 -1)" />
+            </g>
+            <use xlink:href="#lab_frame_horz_grid" transform="rotate(-90)" />
+            <rect class="unitsquare" x="-80" y="-40" width="40" height="40" stroke-width="3" />
+            <text class="center" x="-60" y="-15">1s&times;1s</text>
+        </g>
+        <g id="lab_frame_axes">
+            <path id="lab_frame_horz_axis" class="axis" d="m -90,0 180,0 m -6,-3 6,3 -6,3" />
+            <use xlink:href="#lab_frame_horz_axis" transform="rotate(-90)" />
+        </g>
+        <g id="moving_frame1_axes">
+            <path id="moving_frame_horz_axis" class="axis" d="m -77,0 154,0 m -6,-3 6,3 -6,3" />
+            <use xlink:href="#moving_frame_horz_axis" transform="rotate(-90)" />
+        </g>
+        <g id="space_time_diagram">
+            <g clip-path="url(#clip)">
+                <rect class="diagram_background" x="-100" y="-100" width="200" height="200" />
+                <g class="lab_style">
+                    <use xlink:href="#lab_frame" />
+                    <use xlink:href="#lab_frame_axes" />
+                </g>
+                <g class="moving_style1" transform="matrix(1.1547 -0.5774 -0.5774 1.1547 0 0)">
+                    <use xlink:href="#lab_frame" />
+                    <use xlink:href="#moving_frame1_axes" />
+                </g>
+            </g>
+            <text class="lab_style" x="92" y="0">x</text>
+            <text class="lab_style" x="0" y="-92">t</text>
+            <text class="moving_style1" x="91" y="-45">x<tspan class="sub" dy="5">1</tspan></text>
+            <text class="moving_style1" x="45" y="-91">t<tspan class="sub" dy="5">1</tspan></text>
+        </g>
+    </defs>
+    <use xlink:href="#space_time_diagram" />
+</svg>
+</div>
+
+<p class="fig_caption">Figure 1: Space-time diagram (v=0.5)</p>
+
+<p>The area of one of the unit parallelograms in the (x<sub>1</sub>,t<sub>1</sub>)
+coordinate system is always 1s<sup>2</sup> (this area is equal to the
+determinant of the x<sub>1</sub> and t<sub>1</sub> unit vectors, which
+according to the information above are (&gamma;, &gamma;v) and (&gamma;v, &gamma;),
+respectively).</p>
+
+<p>From the above we can make the following observations about how the axes of the moving frame
+appear in the space-time diagram:</p>
+
+<ul>
+<li>For v = 0, the x<sub>1</sub>,t<sub>1</sub> axes are identical to the x,t axes.
+<li>As v increases from 0 to 1, the x<sub>1</sub> axis rotates up from the x axis towards
+a 45&deg; angle, and the t<sub>1</sub> axis rotates right from the t axis by the same angle.
+The units on both axes stretch out from 1 to infinity.
+<li>As v decreases from 0 to -1, the x<sub>1</sub> axis rotates down from the x axis towards
+a -45&deg; angle, and the t<sub>1</sub> axis rotates left from the t axis by the same angle.
+Again, the units on both axes stretch out from 1 to infinity.
+</ul>
+
+<p>Note that light (in a vacuum) always travels along a 45&deg; line
+towards the upper right or upper left corner (corresponding to v=&plusmn;1) in all frames.</p>
+
+<h3>Time Dilation Derived from a Space-Time Diagram</h3>
+
+<p>A clock at rest at x<sub>1</sub> = 0 in the moving frame
+will be moving up the t<sub>1</sub> axis in the space-time diagram as time
+passes (i.e. the t<sub>1</sub> axis is the clock's "world line" - the path it follows
+through space and time).
+An observer at rest at x = 0 in the lab frame will be moving up the t
+axis as time passes (i.e. the t axis is the observer's world line).
+From the observer's point of view, the clock and he will
+be on the same horizontal line in the diagram at any given moment (because this
+line represents the current lab time).</p>
+
+<p>If both the observer and the clock start out at t = t<sub>1</sub>
+= 0, then they will be at the positions indicated in Figure 2 after 1s of the clock's time.
+The clock will of course have moved one unit up the t<sub>1</sub> axis
+(because this is 1s of its time) corresponding to the lab coordinates
+(&gamma;v,&gamma;) determined previously
+during the construction of the space-time diagram. The observer will be on the
+same horizontal line, so his lab coordinates will be (0,&gamma;). This shows us
+that 1s of the clock's time corresponds to &gamma; seconds of the observer's
+time - in accordance with the time dilation formula derived in
+<a class="toc_ref" href="#Time_Dilation_Derived_from_the_Lorentz_Transformation">section #</a>!</p>
+
+<div class="frame">
+<svg viewBox="-90 -105 195 195">
+    <use xlink:href="#space_time_diagram" />
+    <use xlink:href="#clock" x="23.0940" y="-46.1880" class="moving_style1"/>
+    <path class="lab_style observer_line" marker-start="url(#lab_observer)" d="m 0,-46.1880 h 23.0940" />
+</svg>
+</div>
+
+<p class="fig_caption">Figure 2: Time dilation seen from lab frame<br>
+(black eye is observer in lab frame, blue circle is clock in moving frame)</p>
+
+<p>Now, let's swap the observer
+and the clock and see how this looks in the space-time diagram. The clock is
+now at rest in the lab frame and moving up the t axis, while the observer is
+moving up the t<sub>1</sub> axis. From the observer's point of view, the clock
+and he will be on the same line parallel to the x<sub>1</sub> axis at any given
+moment (because this line represents the current time in the moving frame).</p>
+
+<p>Again, the observer and the
+clock start out at t = t<sub>1</sub> = 0, but this time they end up at the new
+positions indicated in Figure 3 after 1s of the clock's time.
+The clock will have moved one unit up the t axis, and the observer will have moved more than
+one unit (&gamma; seconds) up the t<sub>1</sub> axis in order to remain at the same t<sub>1</sub>
+time as the clock (i.e. to remain on the same line parallel to the x<sub>1</sub>
+axis). So, again the observer sees the predicted time dilation.</p>
+
+<div class="frame">
+<svg viewBox="-90 -105 195 195">
+    <use xlink:href="#space_time_diagram" />
+    <use xlink:href="#clock" x="0" y="-40" class="lab_style"/>
+    <path class="moving_style1 observer_line" marker-start="url(#moving_observer1)" d="M 26.6667,-53.3333 0,-40" />
+</svg>
+</div>
+
+<p class="fig_caption">Figure 3: Time dilation seen from moving frame<br>
+(blue eye is observer in moving frame, black circle is clock in lab frame)</p>
+
+<h3>Lorentz Contraction Derived from a Space-Time Diagram</h3>
+
+<p>Let's consider a rod at rest in the moving frame with one
+end point at x<sub>a1</sub> = 0 and the other at x<sub>b1</sub> = 1s. As time
+passes, the first end point will move up the t<sub>1</sub> axis, and the second
+end-point will move up a line parallel to the t<sub>1</sub> axis. These two
+lines (dashed red in Figure 4) are the world lines of the end points (i.e.
+the "tracks" of the end-points as these move through space and time).</p>
+
+<p>At any given moment, an observer in the moving frame will
+measure the spatial distance between the two end points along a line parallel
+to the x<sub>1</sub> axis (e.g. the green rod in Figure 4), because such a line represents
+simultaneity in the moving frame. Thus, this observer will see a rod length of
+x<sub>b1</sub>-x<sub>a1</sub> = 1s.</p>
+
+<div class="frame">
+<svg viewBox="-90 -105 195 195">
+    <use xlink:href="#space_time_diagram" />
+    <g clip-path="url(#clip)">
+        <g transform="matrix(1.1547 -0.5774 -0.5774 1.1547 0 0)">
+            <path class="tracks01" d="m 0,-204 v 400 m 40,-400 v 400" />
+            <use xlink:href="#rod" x="0" y="-20" width="40" height="7" />
+        </g>
+    </g>
+    <path class="moving_style1 observer_line" marker-start="url(#moving_observer1)" d="M 72,-53.3205 11.5470,-23.0940" />
+</svg>
+</div>
+
+<p class="fig_caption">Figure 4: Length of moving rod measured in moving frame<br>
+(green rod indicates moment of measurement)</p>
+
+<div class="frame">
+<svg viewBox="-90 -105 195 195">
+    <use xlink:href="#space_time_diagram" />
+    <g clip-path="url(#clip)">
+        <g transform="matrix(1.1547 -0.5774 -0.5774 1.1547 0 0)">
+            <path class="tracks01" d="m 0,-204 v 400 m 40,-400 v 400" />
+            <use xlink:href="#rod" x="0" y="-20" width="40" height="5" transform="matrix(1 0.5 0 1 0 0)" />
+        </g>
+    </g>
+    <path class="lab_style observer_line" marker-start="url(#lab_observer)" d="m 0,-23.0940 46.1880,0" />
+</svg>
+</div>
+
+<p class="fig_caption">Figure 5: Length of moving rod measured in lab frame<br>
+(green rod indicates moment of measurement)</p>
+
+<p>An observer at rest in the lab frame, however, will measure
+the spatial distance between the two end points along a line parallel to the x
+axis (e.g. the green rod in Figure 5), because that is what <i>he</i> understands
+to be a simultaneous measurement of the two end point locations. So, he will see
+a shorter rod (of length 1s/&gamma;, to be exact).</p>
+
+<p>Note that in the situations shown in Figure 4 and Figure 5, the two observers
+agree that they are determining the location of the leftmost end point of the rod
+at the same moment (because this end-point happens to have the same coordinates
+in both figures), although their
+clocks do not show the same time at that moment. The observers also agree that
+they are <i>not</i> determining the location of the rightmost end point at the
+same moment. Each observer believes that he is determining the location of both
+end points simultaneously, and that the other observer is <i>not</i> doing so,
+so he does not find it surprising that the other observer comes up with a
+different length.</p>
+
+<hr>
+
+<h2>Time across Space</h2>
+
+<p>The Lorentz transformation (see <a class="toc_ref" href="#Lorentz_Transformation">section #</a>) tells us that
+the time in the moving frame at lab coordinates (x,t) is:</p>
+
+<img src="image020.svg" alt="">
+
+<p>This means that an observer in the lab frame will see the
+time in the moving frame at a fixed lab location (e.g. x = 0) as being <i>faster</i>
+by a factor of &gamma; than his own time.
+In <a class="toc_ref" href="#Time_Dilation_Derived_from_the_Lorentz_Transformation">section #</a> we determined that he will
+see the time at a fixed location in the moving frame as being <i>slower</i>
+by a factor of &gamma; than his own time. In other words, if he observes
+a row of clocks at rest and synchronized
+in the moving frame, and shifts his attention from clock to clock as each of
+them passes him, their time will appear to be faster than his
+(e.g. the vertical instances of clocks B, C, and D in Figure 6 show times -2s, 0s, and 2s
+when they pass lab location x=0 at lab times -1.73s, 0s, and 1.73s, respectively), but if he only
+looks at a single clock all the time, then its time will be slower than his
+(as illustrated in Figure 2 in <a class="toc_ref" href="#Time_Dilation_Derived_from_a_Space-Time_Diagram">section #</a>).</p>
+
+<div class="frame">
+<svg viewBox="-90 -105 195 195">
+    <use xlink:href="#space_time_diagram" />
+    <g clip-path="url(#clip)">
+        <g transform="matrix(1.1547 -0.5774 -0.5774 1.1547 0 0)">
+            <path class="tracks01" d="m -40,-204 v 400 m 40,-400 v 400 m 40,-400 v 400 m 40,-400 v 400" />
+        </g>
+    </g>
+    <g class="moving_style1">
+        <use xlink:href="#clock" x="69.2820" y="-1" />
+        <use xlink:href="#clock" x="0" y="-1"/>
+        <use xlink:href="#clock" x="34.6410" y="-1" />
+        <path class="lab_style observer_line" marker-start="url(#lab_observer)" d="M -20,-1 69.2820,-1" />
+        <use xlink:href="#clock" x="0" y="69.2820" />
+        <path class="lab_style observer_line" marker-start="url(#lab_observer)" d="M -20,69.2820 0,69.2820" />
+        <use xlink:href="#clock" x="0" y="-69.2820" />
+        <path class="lab_style observer_line" marker-start="url(#lab_observer)" d="M -20,-69.2820 0,-69.2820" />
+        <text x="68" y="12">A</text>
+        <text x="33" y="12">B</text>
+        <text x="1" y="12">C</text>
+        <text x="1" y="82">B</text>
+        <text x="1" y="-56">D</text>
+    </g>
+</svg>
+</div>
+
+<p class="fig_caption">Figure 6: Row of moving clocks seen from lab frame<br>
+(blue circles are clocks, dashed red lines are their world lines)</p>
+
+<p>The reason for this apparent paradox is that the moving
+clocks - due to their spatial separation - show different times in the lab frame,
+even though they are perfectly synchronized in the moving frame.
+If we fix the lab time t in the formula above, we see that at any given lab moment (t),
+the leading clock (with largest x if v>0) will show the earliest time,
+and each successive clock will show later and later times
+(e.g. the horizontal instances of clocks A, B, and C in Figure 6 show times
+-1s, -0.5s, and 0s, respectively, when they are observed simultaneously in the lab frame at
+lab time t=0s). The difference between the times shown on two clocks is equal to
+their lab distance multiplied by their velocity multiplied by &gamma;.</p>
+
+<h3>Twin Paradox</h3>
+
+<p>The above observations help explain
+the well-known twin paradox, which asks what happens if one twin travels out
+into space and back again (with the dashed red world line in Figure 7),
+while the other twin remains at home (with the black t axis as world line). Since the twins
+are moving relative to each other, each twin should see the other one ageing
+more slowly than himself due to time dilation. So, when the traveling twin
+returns home, the two would supposedly disagree about which one is now the youngest.
+This is the paradox.</p>
+
+<p>However, if we place synchronized clocks
+throughout the lab frame and let the traveling twin shift his attention from
+clock to clock as he passes them, then it is clear from our previous
+observations that he will see the lab time on these clocks as being <i>faster</i>
+than his own time, even though each individual clock (as well as the clock at
+home) will be ticking slower than his. Since the traveling twin sees the lab
+time at his own location to be consistently faster throughout his travel, he
+will not be surprised to find that the other twin is older than himself when he
+returns home. So, the twins agree that the one at home is the oldest.</p>
+
+<p>But what if the traveling twin keeps his attention on the clock at home?
+Due to time dilation that clock will appear to be ticking slower during the outbound journey
+(where the blue coordinate system in Figure 7 represents the moving frame) -
+and also slower during the homebound journey (where the green coordinate system in Figure 7
+represents the moving frame). So how does the twin at home end up being older? As
+previously shown, the clocks ahead of the traveling twin in his direction of
+movement will show later and later times, so when he reverses his direction of
+travel to move homeward, the clocks he passed on his outbound journey
+(including the one at home) will immediately jump from an earlier to a later
+time in order to fulfill the requirement that clocks ahead of him show later
+and later times (the clock at home jumps from the lower to the upper black circle in Figure 7).
+In other words, the twin at home will appear to age very fast
+during the short period of time while the traveling twin is reversing
+his direction of movement. Thus, there is no paradox.</p>
+
+<div class="frame">
+<svg viewBox="-90 -185 195 195">
+    <defs>
+        <clipPath id="clip2">
+            <rect x="-90" y="-170" width="180" height="180" />
+        </clipPath>
+        <g id="lab_frameb_axes">
+            <path id="lab_frameb_horz_axis" class="axis" d="m -90,0 180,0 m -6,-3 6,3 -6,3" />
+            <use xlink:href="#lab_frameb_horz_axis" transform="translate(0, -80) rotate(-90)" />
+        </g>
+        <g id="moving_frame1b_axes">
+            <path id="moving_frame1b_horz_axis" class="axis" d="m -90,0 167,0 m -6,-3 6,3 -6,3" />
+            <use xlink:href="#moving_frame1b_horz_axis" transform="translate(0, -70) rotate(-90)" />
+        </g>
+        <g id="moving_frame2b_axes">
+            <path id="moving_frame2b_horz_axis" class="axis" d="m -170,0 178,0 m -6,-3 6,3 -6,3" />
+            <use xlink:href="#moving_frame2b_horz_axis" transform="translate(0, -139) rotate(-90)" />
+        </g>
+    </defs>
+    <g id="space_time_diagram2">
+        <g clip-path="url(#clip2)">
+            <rect class="diagram_background" x="-100" y="-180" width="200" height="200" />
+            <g class="lab_style">
+                <use xlink:href="#lab_frame" />
+                <use xlink:href="#lab_frameb_axes" />
+            </g>
+            <g class="moving_style1" transform="matrix(1.1547 -0.5774 -0.5774 1.1547 0 0)">
+                <use xlink:href="#lab_frame" />
+                <use xlink:href="#moving_frame1b_axes" />
+                <path class="tracks01" d="m 0,0 v -69.2820" />
+            </g>
+            <g class="moving_style2" transform="matrix(1.1547 0.5774 0.5774 1.1547 80 0)">
+                <use xlink:href="#lab_frame" />
+                <use xlink:href="#moving_frame2b_axes" />
+                <path class="tracks01" d="m 0,-69.2820 v -69.2820" />
+            </g>
+        </g>
+        <text class="lab_style" x="91" y="-3">x</text>
+        <text class="lab_style" x="0" y="-172">t</text>
+        <g class="moving_style1">
+            <text x="91" y="-45">x<tspan class="sub" dy="5">1</tspan></text>
+            <text x="85" y="-171">t<tspan class="sub" dy="5">1</tspan></text>
+            <use class="lab_style" xlink:href="#clock" x="0" y="-60" />
+            <path class="observer_line" marker-start="url(#moving_observer1)" d="M 60,-90 0,-60" />
+        </g>
+        <g class="moving_style2">
+            <text x="91" y="5">x'<tspan class="sub" dy="5">1</tspan></text>
+            <text class="right" x="-6" y="-171">t'<tspan class="sub" dy="5">1</tspan></text>
+            <use class="lab_style" xlink:href="#clock" x="0" y="-100" />
+            <path class="observer_line" marker-start="url(#moving_observer2)" d="M 60,-70 0,-100" />
+        </g>
+    </g>
+</svg>
+</div>
+
+<p class="fig_caption">Figure 7: Traveling twin's world line (dashed red) in lab frame.<br>
+Twin at home appears to age instantaneously from lower to upper black circle</p>
+
+<p>Note that if the traveling twin were initially approaching the twin at home
+(along the green t'<sub>1</sub> axis in Figure 7), and then reversed his direction to move away
+(along the blue t<sub>1</sub> axis), he would see the twin at home jump <i>back</i> in time
+(from the upper to the lower black circle).</p>
+
+<hr>
+
+<h2>Space-Time Interval, Proper Time, Proper Distance</h2>
+
+<p>As demonstrated earlier, the measured time and distance between two events depends on the
+observer's velocity relative to the events. However, the so-called "space-time interval"
+(&Delta;s)<sup>2</sup> between two events is independent of the observer (i.e. universally
+invariant) and is determined as follows for 1 and 3 spatial dimensions, respectively:</p>
+
+<img src="image021.svg" alt="">
+
+<p>There are 3 cases:</p>
+
+<ul>
+<li>(&Delta;s)<sup>2</sup>&gt;0: The space-time interval is said to be <i>timelike</i> because there
+is more time than space between the events. In this case, &Delta;s is the so-called "proper time"
+between the events, and is the measured time between the events in a co-moving frame where the
+events occur at the same spatial location (i.e. the spatial terms are zero in the above equation).
+
+<li>(&Delta;s)<sup>2</sup>&lt;0: The space-time interval is said to be <i>spacelike</i> because
+there is more space than time between the events. In this case, no co-moving frame exists because
+it would have to move faster than light relative to other frames. Here, the quantity
+&radic;<span class="overline">-(&Delta;s)<sup>2</sup></span> (or imag(&Delta;s)) is the so-called
+"proper distance" between the events, and is the measured distance between the events in a frame
+where the events occur simultaneously (i.e. &Delta;t is zero in the above equation).
+
+<li>(&Delta;s)<sup>2</sup>=0: The space-time interval is said to be <i>lightlike</i> because there
+is the same amount of time and space between the events, so a co-moving frame would have to move
+at the speed of light (unless the events are separated in neither time nor space in any frame).
+In such a frame, the measured time and distance between the events would be zero.
+</ul>
+
+<p>For one event to be the cause of another, the space-time interval between them must be timelike
+or lightlike (and the time difference must be non-negative).</p>
+
+<hr>
+
+<h2>Acceleration</h2>
+
+<p>An acceleration is defined as constant if co-moving
+observers see it as constant, i.e. if the instantaneous acceleration is the
+same in all inertial frames at the moment when the accelerating object is at
+rest in each of these frames.</p>
+
+<p>The world line (in an inertial frame with a single spatial dimension) of an object with the
+constant acceleration a<sub>0</sub> is a hyperbola described by the following
+equation:</p>
+
+<img src="image022.svg" alt="">
+
+<p>where t<sub>0</sub> is the time at which the object is at
+rest in the inertial frame, and x<sub>c</sub> is the x-coordinate where the hyperbola's
+2 asymptotes intersect (see Figure 8). The distance from x<sub>c</sub> to x(t<sub>0</sub>)
+(i.e. the distance between the 2 black dots in Figure 8)
+is 1/a<sub>0</sub>. The left and right branches of the hyperbola correspond to a negative and
+positive a<sub>0</sub>, respectively.</p>
+
+<div class="frame">
+<svg viewBox="-90 -105 195 195">
+    <g id="space_time_diagram3">
+        <g clip-path="url(#clip)">
+            <rect class="diagram_background" x="-100" y="-100" width="200" height="200" />
+            <g class="lab_style">
+                <use xlink:href="#lab_frame" />
+                <use xlink:href="#lab_frame_axes" />
+                <path class="grid" d="m -100,-100 200,200 m -200,0 200,-200" />
+                <circle cx="0" cy="0" r="2" />
+                <text x="1" y="10">(x<tspan class="sub" dy="3">c</tspan><tspan dy="-3">,t</tspan><tspan class="sub" dy="3">0</tspan><tspan dy="-3">)</tspan></text>
+                <circle cx="40" cy="0" r="2" />
+                <path fill="none" d="m 2,-4 c 0,-5 18,0 18,-5 0,5 18,0 18,5" />
+                <text class="center" x="20" y="-12">1/a<tspan class="sub" dy="3">0</tspan></text>
+            </g>
+            <path class="tracks01" d="m 108,-100 c -42,45 -68,75 -68,100 0,25 26,55 68,100" />
+            <path class="tracks01" d="m -108,-100 c 42,45 68,75 68,100 0,25 -26,55 -68,100" />
+        </g>
+        <text class="lab_style" x="92" y="0">x</text>
+        <text class="lab_style" x="0" y="-92">t</text>
+    </g>
+</svg>
+</div>
+
+<p class="fig_caption">Figure 8: World lines (dashed red) of objects with constant acceleration
+a<sub>0</sub>=1s<sup>-1</sup> (right) and a<sub>0</sub>=-1s<sup>-1</sup> (left),
+both with (x<sub>c</sub>,t<sub>0</sub>)=(0,0)</p>
+
+<p>Note that this constant acceleration hyperbola consists of all the space-time points whose
+"proper distance" to (x<sub>c</sub>,t<sub>0</sub>) is 1/a<sub>0</sub> (see
+<a class="toc_ref" href="#Space-Time_Interval__Proper_Time__Proper_Distance">section #</a>).
+</p>
+
+<hr>
+
+<h2>Traveling Faster than Light</h2>
+
+<p>As stated in <a class="toc_ref" href="#Lorentz_Transformation">section #</a>, the Lorentz factor &gamma;
+becomes infinite as the velocity v approaches 1 (the speed of light), so this is an upper
+limit on v, which cannot be exceeded. How does this affect space travel?</p>
+
+<p>Well, if an observer in the lab
+frame determines the traveler's velocity v by measuring the traveled (lab
+frame) distance and dividing that by the (lab frame) duration of the travel,
+then it is true that this velocity v has an upper limit of 1. So, from the point
+of view of the observer in the lab frame, the traveler cannot travel faster
+than light.</p>
+
+<p>Likewise, if the traveler himself
+determines his own velocity v by measuring the relative movement of some
+reference point at rest in the lab frame, and he makes sure that both distance
+and time are measured in his own moving frame, then this velocity will be the
+same as the one determined by the observer in the lab frame, and it will also
+have an upper limit of 1. So, if the traveler defines his velocity as the
+velocity at which objects at rest in the lab frame move past him, then also he
+will agree that he cannot travel faster than light.</p>
+
+<p>However, one might argue that a
+different definition of velocity would be more appropriate for the traveler. A
+traveler going from location A to B (both locations being at rest in the lab
+frame) will probably be more interested in knowing how long (measured in his
+own time) it will take him to travel the (lab frame) distance from A to B. So
+he might define his effective velocity as the traveled <i>lab frame</i>
+distance divided by the duration of the travel measured in his <i>own</i> time.
+Using the Lorentz transformation, we find that the relationship between this
+effective velocity v<sub>eff</sub> and the real velocity v is given by:</p>
+
+<img src="image023.svg" alt="">
+
+<p>There is clearly no theoretical upper bound on v<sub>eff</sub>, and it becomes greater than 1
+("faster than light") when v is greater than 1/&radic;<span class="overline">2</span>
+(approx. 71% of the speed of light).
+This means that a traveler can in fact (theoretically)
+travel as far as he wants in as short time as he wants. To him it appears that the
+Lorentz contraction is reducing the distance he has to travel, so he can do it
+in a shorter time without exceeding the speed of light.</p>
+
+<p>The disadvantage of traveling with a
+high v<sub>eff</sub> is that the lab time (at the traveler's moving location)
+will speed up as demonstrated in <a class="toc_ref" href="#Time_across_Space">section #</a>,
+so the interesting distant star that was the target of the travel, might be long gone
+when the traveler gets there an hour later, and the folks at home will be long dead
+when he returns after another hour of his own time.</p>
+
+</div>
+
+</div>
+
+</body>
+</html>

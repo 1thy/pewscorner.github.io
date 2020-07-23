@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
+<link rel="stylesheet" type="text/css" href="../style2.css">
+<title>I/Q Signal Mismatch Theory</title>
+<script type="text/javascript" src="../page.js"></script>
+<script type="text/javascript">
+genericPageSetup.extra_menu_buttons = [['calc_button', 'Calc', 'location.href="../iq_mismatch_calc.html"']];
+</script>
+</head>
+
+<body>
+
+<div class="hcontainer">
+
+<h1>I/Q Signal Mismatch Theory</h1>
+
+<div class="box imgbox">
+
+<h2>Introduction</h2>
+
+<p>This document describes the impact of amplitude and phase
+mismatch in an I/Q (in-phase/quadrature-phase) signal pair. The result of a mismatch is an
+unwanted spectral component at the negative signal frequency.</p>
+
+<hr>
+
+<h2>Theory</h2>
+
+<p>An ideal sinusoidal I/Q signal pair with no amplitude or
+phase mismatch can be represented by the following complex function:</p>
+
+<p>Equation 1:</p>
+
+<p style="text-align:center">y(t) &nbsp; = &nbsp; A exp(i(&#969;t + &#966;)) &nbsp; = &nbsp;
+A cos(&#969;t + &#966;) &nbsp; + &nbsp; i A sin(&#969;t + &#966;)</p>
+
+<p>The real part (the first term in the second expression) of
+y(t) is the I signal, and the imaginary part (the second term except the &quot;i&quot;)
+is the Q signal. &#969;, A, and &#966; are the angular frequency, amplitude and
+phase, respectively.</p>
+
+<p>If an amplitude and phase mismatch is introduced, the
+function becomes:</p>
+
+<p>Equation 2:</p>
+
+<p style="text-align:center">y(t) &nbsp; = &nbsp; A cos(&#969;t + &#966;) &nbsp; + &nbsp;
+i &#945; A sin(&#969;t + &#966; + &#949;)</p>
+
+<p>Here, A and &#966; are the amplitude and phase of the I
+signal, &#945; is the amplitude mismatch (the ratio of Q amplitude to I
+amplitude), and &#949; is the phase mismatch (the Q phase plus 90 degrees minus the I
+phase). For &#945;=0 dB (&#945;=1) and &#949;=0 degrees there is no mismatch.</p>
+
+<p>By rewriting Equation 2 we can split the mismatched I/Q signal into its spectral components:</p>
+
+<p>Equation 3:</p>
+
+<p style="text-align:center">y(t) &nbsp; = &nbsp; 0.5 (1 + &#945; exp(i &#949;)) A exp(i(&#969;t + &#966;))
+&nbsp; + &nbsp; 0.5 (1 - &#945; exp(-i &#949;)) A exp(-i(&#969;t + &#966;))</p>
+
+<p>The first term is the wanted signal (including both I and Q
+parts) - a pure complex sinusoid at the frequency &#969;. The second term is an
+unwanted signal at the negative frequency -&#969;. The wanted signal is simply
+the ideal I/Q signal from Equation 1 multiplied by a complex constant, which modifies the amplitude and phase (here, the I and Q parts are modified equally).</p>
+
+<p>From Equation 3 the ratio of the unwanted signal magnitude to the wanted signal magnitude can be found:</p>
+
+<p>Equation 4:</p>
+
+<img src="image004.svg" alt="">
+
+<hr>
+
+<h2>Conclusion</h2>
+
+<p>It has been shown that the introduction of an amplitude
+and/or phase mismatch between the I and Q signals causes an unwanted spectral
+component to appear at the mirror frequency. Also, the amplitude and phase of
+the wanted spectral component will change. Equation 3 quantifies these effects.</p>
+
+</div>
+
+</div>
+
+</body>
+</html>

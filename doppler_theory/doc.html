@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
+<link rel="stylesheet" type="text/css" href="../style2.css">
+<title>Doppler Shift Theory</title>
+<script type="text/javascript" src="../page.js"></script>
+<script type="text/javascript">
+genericPageSetup.extra_menu_buttons = [['calc_button', 'Calc', 'location.href="../doppler_calc.html"']];
+
+function init()
+{
+    genericPageSetup.make_table_of_contents();
+}
+
+window.addEventListener('load', init, false);
+</script>
+</head>
+
+<body>
+
+<div class="hcontainer">
+
+<h1>Doppler Shift Theory</h1>
+
+<div class="box imgbox">
+
+<h2 class="toc">Contents</h2>
+
+<hr>
+
+<h2>Introduction</h2>
+
+<p>In this document formulas are derived for the Doppler shift in
+various cases.</p>
+
+<hr>
+
+<h2>Stationary Transmitter, Moving Receiver</h2>
+
+<p>Assume we have a medium in which waves are transmitted with a
+frequency of f<sub>0</sub> and propagate with velocity v<sub>w</sub> relative
+to the medium. If the wave transmitter is at rest relative to the medium, the
+wavelength everywhere in the medium will be:</p>
+
+<p>Equation 1:</p>
+
+<img src="image001.svg" alt="">
+
+<p>If the receiver is moving with velocity v<sub>Rx</sub>
+relative to the medium and in the direction of the transmitter, then the receiver's
+velocity relative to the waves will be:</p>
+
+<p>Equation 2:</p>
+
+<img src="image002.svg" alt="">
+
+<p>Thus, the received waves will have the apparent frequency:</p>
+
+<p>Equation 3:</p>
+
+<img src="image003.svg" alt="">
+
+<p>By substituting Equation 1 and Equation 2 into Equation 3, we obtain the following expression for the apparent frequency:</p>
+
+<p>Equation 4:</p>
+
+<img src="image004.svg" alt="">
+
+<p>This can be rewritten to express the relative Doppler shift:</p>
+
+<p>Equation 5:</p>
+
+<img src="image005.svg" alt="">
+
+<p>Keep in mind that the velocities v<sub>w</sub> and v<sub>Rx</sub>
+are relative to the medium.</p>
+
+<hr>
+
+<h2>Moving Transmitter, Stationary Receiver</h2>
+
+<p>Now let's assume that the transmitter is moving with
+velocity v<sub>Tx</sub> relative to the medium and towards the receiver, which
+is at rest relative to the medium. The wavelength in front of the transmitter
+will be reduced by the distance it travels during one wave period T<sub>0</sub>
+(=1/f<sub>0</sub>), so the wavelength becomes:</p>
+
+<p>Equation 6:</p>
+
+<img src="image006.svg" alt="">
+
+<p>The received waves will therefore have the apparent
+frequency:</p>
+
+<p>Equation 7:</p>
+
+<img src="image007.svg" alt="">
+
+<p>By substituting Equation 6 into Equation 7, we obtain the following expression for the apparent frequency:</p>
+
+<p>Equation 8:</p>
+
+<img src="image008.svg" alt="">
+
+<p>And the relative Doppler shift becomes:</p>
+
+<p>Equation 9:</p>
+
+<img src="image009.svg" alt="">
+
+<p>When v<sub>Tx</sub> is small compared to v<sub>w</sub>, Equation
+8 and Equation 9 become similar to the stationary transmitter case (Equation 4 and Equation 5) as shown below:</p>
+
+<p>Equation 10:</p>
+
+<img src="image010.svg" alt="">
+
+<p>Equation 11:</p>
+
+<img src="image011.svg" alt="">
+
+<hr>
+
+<h2>Moving Transmitter, Moving Receiver</h2>
+
+<p>If both the transmitter and the receiver are moving relative
+to the medium and towards each other with the velocities v<sub>Tx</sub> and v<sub>Rx</sub>,
+respectively, relative to the medium, then the wavelength &#955; will be
+described by Equation 6, and the receiver's velocity v relative to the waves will be described by Equation 2. For the receiver the waves will therefore have the apparent frequency:</p>
+
+<p>Equation 12:</p>
+
+<img src="image012.svg" alt="">
+
+<p>and the relative Doppler shift:</p>
+
+<p>Equation 13:</p>
+
+<img src="image013.svg" alt="">
+
+<p>When v<sub>Rx</sub> and v<sub>Tx</sub> are small compared to v<sub>w</sub>,
+these equations can be simplified to:</p>
+
+<p>Equation 14:</p>
+
+<img src="image014.svg" alt="">
+
+<p>Equation 15:</p>
+
+<img src="image015.svg" alt="">
+
+<p>Note that v<sub>Tx</sub> and v<sub>Rx</sub> should have the
+same sign when they are pointed in opposite directions. v<sub>w</sub> should always
+be positive.</p>
+
+<hr>
+
+<h2>Electromagnetic Waves</h2>
+
+<p>For electromagnetic waves it is not necessary to relate the
+motion of the transmitter, receiver, and waves to a medium. Only the velocities
+relative to the receiver are important. If the velocity v<sub>Tx</sub> of the
+transmitter relative to the receiver (and towards it) is much smaller than the velocity
+v<sub>w</sub> of the waves (which is 299,792,458 m/s in a vacuum), we can reuse Equation 10
+and Equation 11, regardless of whether the receiver is moving or not:</p>
+
+<p>Equation 16:</p>
+
+<img src="image010.svg" alt="">
+
+<p>Equation 17:</p>
+
+<img src="image011.svg" alt="">
+
+<p>Remember that in this case v<sub>Tx</sub> is the transmitter's velocity relative to the
+<i>receiver</i> - not relative to the medium. Equation 16 and Equation 17 could of course also
+be obtained by setting v<sub>Rx</sub>=0 in Equation 14 and Equation 15, respectively.</p>
+
+<p>If the transmitter velocity v<sub>Tx</sub> is <i>not</i> small compared to the electromagnetic
+wave velocity v<sub>w</sub>, relativistic effects (according to
+<a href="../relativity_theory/doc.html">Einstein's Theory of Relativity</a>)
+will be non-negligible and need to be taken into account. In this case,
+<a href="../relativity_theory/doc.html#Time_Dilation_Derived_from_the_Lorentz_Transformation">time dilation</a>
+will reduce the transmitted frequency f<sub>0</sub> in Equation 8 by the Lorentz factor &gamma;
+when observed from the receiver's frame of reference (before accounting for the Doppler shift).
+The Lorentz factor is determined by the transmitter's velocity v<sub>Tx</sub> relative to the
+receiver as follows: </p>
+
+<p>Equation 18:</p>
+
+<img src="image018.svg" alt="">
+
+<p>Replacing f<sub>0</sub> in Equation 8 with the time dilated value f<sub>0</sub>/&gamma;,
+we get the combined result of time dilation and Doppler shift:</p>
+
+<p>Equation 19:</p>
+
+<img src="image019.svg" alt="">
+
+<p>Equation 20:</p>
+
+<img src="image020.svg" alt="">
+
+<p>(v<sub>Tx</sub> is the transmitter's velocity relative to the receiver and towards the receiver,
+and v<sub>w</sub> is the electromagnetic wave velocity).</p>
+
+</div>
+
+</div>
+
+</body>
+</html>

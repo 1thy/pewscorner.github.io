@@ -1,0 +1,312 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Barcodes</title>
+<style type="text/css">
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin: 0px;
+}
+
+#page {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-flow: column nowrap;
+    flex-flow: column nowrap;
+    width: 100%;
+    height: 100%;
+}
+
+h1 {
+    text-align: center;
+    flex: 0 0 auto;
+    margin-bottom: 0.5rem;
+}
+
+#content {
+    -webkit-flex: 1 1 auto;
+    flex: 1 1 auto;
+    display: -webkit-flex;
+    display: flex;
+    overflow: hidden;
+    -webkit-flex-flow: column nowrap;
+    flex-flow: column nowrap;
+    -webkit-justify-content: flex-start;
+    justify-content: flex-start;
+    -webkit-align-items: stretch;
+    align-items: stretch;
+    -webkit-align-content: center;
+    align-content: center;
+}
+
+#content > div {
+    box-sizing: content-box;
+}
+
+#list {
+    -webkit-flex: 1 1 auto;
+    flex: 1 1 auto;
+    text-align: center;
+    overflow-y: scroll;
+    border-bottom: 2px solid black;
+}
+
+ul {
+    display: inline-block;
+    margin: 0px;
+    text-align: left;
+}
+
+#detail {
+    -webkit-flex: 0 0 auto;
+    flex: 0 0 auto;
+    margin: 0 auto;
+}
+
+#detail_text {
+    font-size: 100%;
+    line-height: 1.2em;
+    height: 3.6em;
+    text-align: center;
+}
+
+#barcode_canvas {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
+}
+</style>
+<script type="text/javascript">
+"use strict";
+
+var codes = [
+    {nbr: "5750002540008", name: "2 stk. kokkeviskestykker 50x100 cm"},
+    {nbr: "5410146964954", name: "Actimel jordb&aelig;r 8-pak"},
+    {nbr: "5760466956840", name: "Cheasy 10% mild skiveost"},
+    {nbr: "5700382770113", name: "Coop smag forskellen sm&aring; spr&oslash;de guler&oslash;dder"},
+    {nbr: "5701020997329", name: "Fun one jordb&aelig;r-hindb&aelig;r light 0.5 l"},
+    {nbr: "5000127527027", name: "Kellogg's special K red berries"},
+    {nbr: "8712566246137", name: "L&auml;tta"},
+    {nbr: "7316970278916", name: "Lambi k&oslash;kkenrulle 4-pak"},
+    {nbr: "7316970279159", name: "Lambi k&oslash;kkenrulle 6-pak"},
+    {nbr: "5010123721947", name: "Listerine teeth & gum"},
+    {nbr: "8712566328208", name: "Magnum mandel 4-pak"},
+    {nbr: "8712566328239", name: "Magnum mandel 8-pak"},
+    {nbr: "8710908412691", name: "Neutral h&aring;nds&aelig;be"},
+    {nbr: "7319470816107", name: "Nivea 48h dry impact plus deo"},
+    {nbr: "4005808515608", name: "Nivea soft cream"},
+    {nbr: "5701246105645", name: "Nyt nordisk kartoffelbrød"},
+    {nbr: "5705001471709", name: "Rynkeby premium rigtig juice appelsin"},
+].sort(function(a,b){return a.name.localeCompare(b.name)});
+
+// Class Ean13Barcode for creating EAN-13 barcodes
+
+// Constructor
+var Ean13Barcode = function(numeric_code)
+{
+    this.numeric_code = numeric_code;
+    this.bar_dims = [];
+    this.check();
+    this.calc_bar_dims();
+}
+
+// Widths (in "modules") of bars and spaces for sets A, B, and C for each digit
+// (sets A and B are used in left half of barcode, i.e. for 2nd-7th digit,
+// set C is used in right half, i.e. for 8th-13th digit,
+// 13th digit is check digit)
+Ean13Barcode.prototype.digit_encoding = [
+    //   S B S B       S B S B       B S B S    (B = bar, S = space)
+    {a: [3,2,1,1], b: [1,1,2,3], c: [3,2,1,1]},
+    {a: [2,2,2,1], b: [1,2,2,2], c: [2,2,2,1]},
+    {a: [2,1,2,2], b: [2,2,1,2], c: [2,1,2,2]},
+    {a: [1,4,1,1], b: [1,1,4,1], c: [1,4,1,1]},
+    {a: [1,1,3,2], b: [2,3,1,1], c: [1,1,3,2]},
+    {a: [1,2,3,1], b: [1,3,2,1], c: [1,2,3,1]},
+    {a: [1,1,1,4], b: [4,1,1,1], c: [1,1,1,4]},
+    {a: [1,3,1,2], b: [2,1,3,1], c: [1,3,1,2]},
+    {a: [1,2,1,3], b: [3,1,2,1], c: [1,2,1,3]},
+    {a: [3,1,1,2], b: [2,1,1,3], c: [3,1,1,2]},
+];
+
+// Implicit encoding of first digit as combination of sets A and B for digits in left half of barcode
+Ean13Barcode.prototype.first_digit_encoding = [
+    ['a', 'a', 'a', 'a', 'a', 'a'],
+    ['a', 'a', 'b', 'a', 'b', 'b'],
+    ['a', 'a', 'b', 'b', 'a', 'b'],
+    ['a', 'a', 'b', 'b', 'b', 'a'],
+    ['a', 'b', 'a', 'a', 'b', 'b'],
+    ['a', 'b', 'b', 'a', 'a', 'b'],
+    ['a', 'b', 'b', 'b', 'a', 'a'],
+    ['a', 'b', 'a', 'b', 'a', 'b'],
+    ['a', 'b', 'a', 'b', 'b', 'a'],
+    ['a', 'b', 'b', 'a', 'b', 'a'],
+];
+
+// Left/right end pattern: bar, space, bar
+Ean13Barcode.prototype.normal_guard_pattern = [1,1,1]; // unit: modules
+
+// Center pattern: space, bar, space, bar, space
+Ean13Barcode.prototype.center_guard_pattern = [1,1,1,1,1]; // unit: modules
+
+Ean13Barcode.prototype.left_quiet_zone_width = 11; // unit: modules
+
+Ean13Barcode.prototype.right_quiet_zone_width = 7; // unit: modules
+
+Ean13Barcode.prototype.digit_pattern_width = 7; // unit: modules
+
+Ean13Barcode.prototype.guard_pattern_extra_height = 5; // unit: modules
+
+Ean13Barcode.prototype.digit_height = 10; // unit: modules
+
+Ean13Barcode.prototype.total_width =
+    Ean13Barcode.prototype.left_quiet_zone_width +
+    Ean13Barcode.prototype.normal_guard_pattern.length +
+    6 * Ean13Barcode.prototype.digit_pattern_width +
+    Ean13Barcode.prototype.center_guard_pattern.length +
+    6 * Ean13Barcode.prototype.digit_pattern_width +
+    Ean13Barcode.prototype.normal_guard_pattern.length +
+    Ean13Barcode.prototype.right_quiet_zone_width;
+
+Ean13Barcode.prototype.check = function()
+{
+    if (!/^\d{13}$/.test(this.numeric_code))
+    {
+        alert('Barcode error: ' + this.numeric_code + ' is not 13 digits!');
+        this.numeric_code = '0000000000000';
+    }
+    var sum0 = 0;
+    var sum1 = 0;
+    for (var i = 0; i < 12; i += 2)
+    {
+        sum0 += +this.numeric_code.charAt(i);
+        sum1 += +this.numeric_code.charAt(i + 1);
+    }
+    var checkdigit = (10 - (sum0 + 3 * sum1) % 10) % 10;
+    if (checkdigit != +this.numeric_code.charAt(12))
+    {
+        alert('Barcode error: Last digit of ' + this.numeric_code + ' should be ' +
+            checkdigit + '!');
+    }
+}
+
+Ean13Barcode.prototype.extend_bar_dims = function(bar_widths, bar_extra_height)
+{
+    var that = this;
+    bar_widths.forEach(function(w)
+    {
+        that.bar_dims.push([w, bar_extra_height]);
+    });
+}
+
+Ean13Barcode.prototype.calc_bar_dims = function()
+{
+    var first_digit = +this.numeric_code.charAt(0);
+    this.bar_dims.length = 0;
+    this.extend_bar_dims(this.normal_guard_pattern, this.guard_pattern_extra_height);
+    for (var i = 1; i < 7; i++)
+    {
+        var digit = +this.numeric_code.charAt(i);
+        // Determine which set (A or B) to use for this digit
+        var set_id = this.first_digit_encoding[first_digit][i - 1];
+        // Extend bar_dims with all bars for this digit (using set A or B)
+        this.extend_bar_dims(this.digit_encoding[digit][set_id], 0);
+    }
+    this.extend_bar_dims(this.center_guard_pattern, this.guard_pattern_extra_height);
+    for (var i = 7; i < 13; i++)
+    {
+        var digit = +this.numeric_code.charAt(i);
+        // Extend bar_dims with all bars for this digit (using set C)
+        this.extend_bar_dims(this.digit_encoding[digit].c, 0);
+    }
+    this.extend_bar_dims(this.normal_guard_pattern, this.guard_pattern_extra_height);
+}
+
+Ean13Barcode.prototype.draw = function(g)
+{
+    var module_width = Math.floor(g.canvas.width / this.total_width);
+    var bar_top = 2 * module_width;
+    var bar_height = g.canvas.height - 14 * module_width;
+    var x = Math.floor((g.canvas.width - this.total_width * module_width) / 2);
+    x += this.left_quiet_zone_width * module_width;
+    var digit_width = this.digit_pattern_width * module_width;
+    var digit_height = this.digit_height * module_width;
+    var first_digit_x = x - digit_width;
+    var digit_x = x + (this.normal_guard_pattern.length + 1) * module_width;
+    var digit_y = bar_top + bar_height + digit_height;
+    var is_bar = true;
+    for (var i = 0; i < this.bar_dims.length; i++)
+    {
+        var bar_width = this.bar_dims[i][0] * module_width;
+        var bar_extra_height = this.bar_dims[i][1] * module_width;
+        if (is_bar)
+        {
+            g.fillRect(x, bar_top, bar_width, bar_height + bar_extra_height);
+        }
+        x += bar_width;
+        is_bar = !is_bar;
+    }
+    g.font = digit_height + 'px monospace';
+    g.fillText(this.numeric_code.charAt(0), first_digit_x, digit_y);
+    for (var i = 1; i < this.numeric_code.length; i++)
+    {
+        g.fillText(this.numeric_code.charAt(i), digit_x, digit_y);
+        digit_x += digit_width + (i == 6 && this.center_guard_pattern.length * module_width);
+    }
+}
+
+var detail_text_elem;
+var barcode_canvas_elem;
+var g;
+
+function show_detail(index)
+{
+    var code_info = codes[index];
+    detail_text_elem.innerHTML = code_info.name + '<br>' + code_info.nbr + '<br>';
+    g.fillStyle = '#FFFFFF';
+    g.fillRect(0, 0, barcode_canvas_elem.width, barcode_canvas_elem.height);
+    g.fillStyle = '#000000';
+    code_info.barcode.draw(g);
+}
+
+function init()
+{
+    detail_text_elem = document.getElementById('detail_text');
+    barcode_canvas_elem = document.getElementById('barcode_canvas');
+    g = barcode_canvas_elem.getContext("2d");
+    var list_elem = document.getElementById('list');
+    var list_html = '<ul>';
+    codes.forEach(function(code_info, index)
+    {
+        code_info.barcode = new Ean13Barcode(code_info.nbr);
+        list_html += '<li><a href="javascript:show_detail(' + index + ')">' + code_info.name + '<\/a>';
+    });
+    list_html += '<\/ul>';
+    list_elem.innerHTML = list_html;
+    show_detail(0);
+}
+
+window.addEventListener('load', init, false);
+</script>
+</head>
+<body>
+
+<div id="page">
+
+<h1>Barcodes</h1>
+
+<div id="content">
+<div id="list"></div>
+<div id="detail">
+    <div id="detail_text"></div>
+    <canvas id="barcode_canvas" width=400 height=200><span style="color:red"><b>ERROR! Your browser doesn't support the HTML5 canvas element!</b></span></canvas>
+</div>
+</div>
+
+</div>
+
+</body>
+</html>
